@@ -1,0 +1,26 @@
+{
+  "name": "masayuki-bot",
+  "version": "1.0.0",
+  "description": "Imagine a Bot",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FujaTyping/Masayuki.git"
+  },
+  "keywords": [
+    "Masayuki"
+  ],
+  "author": "FujaTyping",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FujaTyping/Masayuki/issues"
+  },
+  "homepage": "https://github.com/FujaTyping/Masayuki#readme",
+  "dependencies": {
+    "@sapphire/framework": "^4.5.0",
+    "discord.js": "^14.11.0"
+  }
+}
