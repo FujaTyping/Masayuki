@@ -1,6 +1,9 @@
 const { SapphireClient } = require('@sapphire/framework');
 const { GatewayIntentBits } = require('discord.js');
-const { prefix, discord_token } = require('./config.json');
+const { prefix } = require('./config.json');
+
+require('dotenv').config()
+const discord_token = process.env.discord_token
 
 const client = new SapphireClient({
     defaultPrefix: prefix, // Custom prefix
