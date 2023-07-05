@@ -30,7 +30,7 @@ class PingCommand extends Command {
             const Content = new EmbedBuilder()
                 .setColor(14425658)
                 .setTitle('🏓  Pong')
-                .setDescription(`Want to play ping-pong with me?\n\n🧠 : My ping : ${diff} ms\n💓 : Heartbeat : ${ping} ms`)
+                .setDescription(`Want to play ping-pong with me?\n\n🧠 : My ping : ${diff} ms\n💓 : My Heartbeat : ${ping} ms`)
                 .setTimestamp()
 
             return interaction.editReply({ embeds: [Content] });
