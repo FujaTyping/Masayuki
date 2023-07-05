@@ -14,12 +14,16 @@ npm install
 > Use this value
 ```
 {
-    "discord_token": "",
     "prefix": "",
     "owners": [
         ""
     ]
 }
+```
+2.1. Make **.env** file in main directory (outside src folder)
+> Use this value
+```
+discord_token=
 ```
 3. Run command (Don't forget to install [node](https://nodejs.org/en/download))
 ```
