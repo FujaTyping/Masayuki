@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node src/index.js"
   },
+  "engines": {
+    "node": ">20.4.0",
+    "npm": ">9.7.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FujaTyping/Masayuki.git"
