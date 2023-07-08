@@ -26,9 +26,9 @@ class GithubCommand extends Command {
 
         const Wait = new EmbedBuilder()
             .setColor(14425658)
-            .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
             .setTitle(`🔎 Looking for username : ${Username}`)
             .setTimestamp()
+            .setFooter({ text: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' });
 
         const msg = await interaction.reply({ embeds: [Wait], fetchReply: true });
 
@@ -39,7 +39,6 @@ class GithubCommand extends Command {
 
                     const Content = new EmbedBuilder()
                         .setColor(14425658)
-                        .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
                         .setTitle(`Result for username : ${user.login} ✨`)
                         .setThumbnail(`${user.avatar_url}`)
                         .setDescription(`- 👤 Name : ${user.name}\n- 🆔 Id : ${user.id}\n- 🌎 Location : ${user.location}\n- 🔗 Profile url : ${user.html_url}`)
@@ -48,15 +47,16 @@ class GithubCommand extends Command {
                             { name: '🌐 Public gist', value: `${user.public_gists}`, inline: true },
                         )
                         .setTimestamp()
+                        .setFooter({ text: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' });
 
                     return interaction.editReply({ embeds: [Content] });
                 })
                 .catch(error => {
                     const Error = new EmbedBuilder()
                         .setColor(14425658)
-                        .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
                         .setTitle(`❌ Cannot find username : ${Username}`)
                         .setTimestamp()
+                        .setFooter({ text: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' });
 
                     return interaction.editReply({ embeds: [Error] });
                 });
