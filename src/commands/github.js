@@ -25,8 +25,8 @@ class GithubCommand extends Command {
         const Username = interaction.options.getString('username')
 
         const Wait = new EmbedBuilder()
-            .setColor(0)
-            .setAuthor({ name: 'Github API', iconURL: 'https://www.pngarts.com/files/8/Black-Github-Logo-PNG-Image-Background.png' })
+            .setColor(14425658)
+            .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
             .setTitle(`🔎 Looking for username : ${Username}`)
             .setTimestamp()
 
@@ -38,8 +38,8 @@ class GithubCommand extends Command {
                     const user = response.data;
 
                     const Content = new EmbedBuilder()
-                        .setColor(0)
-                        .setAuthor({ name: 'Github API', iconURL: 'https://www.pngarts.com/files/8/Black-Github-Logo-PNG-Image-Background.png' })
+                        .setColor(14425658)
+                        .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
                         .setTitle(`Result for username : ${user.login} ✨`)
                         .setThumbnail(`${user.avatar_url}`)
                         .setDescription(`- 👤 Name : ${user.name}\n- 🆔 Id : ${user.id}\n- 🌎 Location : ${user.location}\n- 🔗 Profile url : ${user.html_url}`)
@@ -53,8 +53,8 @@ class GithubCommand extends Command {
                 })
                 .catch(error => {
                     const Error = new EmbedBuilder()
-                        .setColor(16711680)
-                        .setAuthor({ name: 'Github API', iconURL: 'https://www.pngarts.com/files/8/Black-Github-Logo-PNG-Image-Background.png' })
+                        .setColor(14425658)
+                        .setAuthor({ name: 'Github API', iconURL: 'https://cdn.discordapp.com/attachments/988037995531759658/1127243614536343642/Black-Github-Logo-PNG-Image-Background_1.png' })
                         .setTitle(`❌ Cannot find username : ${Username}`)
                         .setTimestamp()
 
