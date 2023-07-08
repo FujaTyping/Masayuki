@@ -2,7 +2,7 @@ const { isMessageInstance } = require('@sapphire/discord.js-utilities');
 const { Command } = require('@sapphire/framework');
 const { EmbedBuilder } = require('discord.js')
 
-class PingCommand extends Command {
+class AboutCommand extends Command {
     constructor(context, options) {
         super(context, { ...options });
     }
@@ -30,5 +30,5 @@ class PingCommand extends Command {
 }
 
 module.exports = {
-    PingCommand
+    AboutCommand
 };
