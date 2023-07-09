@@ -41,7 +41,7 @@ class GithubCommand extends Command {
                         .setColor(14425658)
                         .setTitle(`Result for username : ${user.login} ✨`)
                         .setThumbnail(`${user.avatar_url}`)
-                        .setDescription(`- 👤 Name : ${user.name}\n- 🆔 Id : ${user.id}\n- 🌎 Location : ${user.location}\n- 🔗 Profile url : ${user.html_url}`)
+                        .setDescription(`- 👤 Name : ${user.name}\n- 🆔 Id : ${user.id}\n- 🌎 Location : ${user.location}\n- 🔗 Profile url : ${user.html_url}\n- 🔨 Created at : ${user.created_at}`)
                         .addFields(
                             { name: '🌐 Public repository', value: `${user.public_repos}`, inline: true },
                             { name: '🌐 Public gist', value: `${user.public_gists}`, inline: true },
