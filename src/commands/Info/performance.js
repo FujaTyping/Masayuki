@@ -21,7 +21,7 @@ class PerformanceCommand extends Command {
         const Content = new EmbedBuilder()
             .setColor(14425658)
             .setTitle("I'm fine 👍🏻 , Thank you")
-            .setDescription(`👦🏻 Name : Masayuki\n📃 Version : 1.0.0\n⌚ Uptime (in seconds) : ${os.uptime()}`)
+            .setDescription(`- 👦🏻 Name : Masayuki\n- 📃 Version : 1.0.0\n- ⌚ Uptime (in seconds) : ${os.uptime()}`)
             .addFields(
                 { name: '🏠 Host name', value: `${os.hostname()}` },
                 { name: '🖥 Cpu', value: `${cpu[0].model}` },

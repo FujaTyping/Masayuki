@@ -32,7 +32,7 @@ class MemeCommand extends Command {
                     const Content = new EmbedBuilder()
                         .setColor(14425658)
                         .setTitle(`Found meme for you ✨`)
-                        .setDescription(`📃 Caption : ${info.title}`)
+                        .setDescription(`- 📃 Caption : ${info.title}`)
                         .addFields(
                             { name: '👤 Author', value: `${info.author}`, inline: true },
                             { name: '🌳 Subreddit', value: `${info.subreddit}`, inline: true },
