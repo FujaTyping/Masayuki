@@ -2,7 +2,7 @@ const { AllFlowsPrecondition } = require('@sapphire/framework');
 const { owners } = require('../config.json');
 
 class UserPrecondition extends AllFlowsPrecondition {
-    #message = '⚠ คำสั่งนี้เจ้าของบอทใช้ได้เท่านั้น !';
+    #message = '⚠ This command use by ONWERS only!';
 
     chatInputRun(interaction) {
         return this.doOwnerCheck(interaction.user.id);
