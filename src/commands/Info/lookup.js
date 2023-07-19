@@ -1,6 +1,6 @@
 const { isMessageInstance } = require('@sapphire/discord.js-utilities');
 const { Command } = require('@sapphire/framework');
-const { EmbedBuilder } = require('discord.js')
+const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js')
 
 class DiscordCommand extends Command {
     constructor(context, options) {
@@ -27,6 +27,15 @@ class DiscordCommand extends Command {
         const Permissions = Member.permissions.toArray();
         const PermissionsString = Permissions.join(' , ');
 
+        const Request = new ButtonBuilder() // Button builder
+            .setCustomId('request')
+            .setLabel('Request permissions')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('🔐');
+
+        const Trigged = new ActionRowBuilder() // Build components
+            .addComponents(Request);
+
         const Content = new EmbedBuilder()
             .setColor(14425658)
             .setTitle(`👤 Lookup for ${User.username}`)
@@ -34,12 +43,42 @@ class DiscordCommand extends Command {
             .addFields(
                 { name: 'ฺ🖼 Banner', value: `${User.banner}`, inline: true },
                 { name: '🎨 Accent color', value: `${User.accentColor}`, inline: true },
-                { name: '🔐 Permissions', value: `${PermissionsString}` },
+                //{ name: '🔐 Permissions', value: `${PermissionsString}` },
             )
             .setThumbnail(`${User.avatarURL()}`)
             .setTimestamp()
 
-        return await interaction.reply({ embeds: [Content] });
+        await interaction.reply({ embeds: [Content], components: [Trigged] });
+
+        const collector = interaction.channel.createMessageComponentCollector({
+            filter: (buttonInteraction) => buttonInteraction.customId === 'request' && buttonInteraction.user.id === interaction.user.id,
+            time: 60000,
+            max: 1
+        });
+
+        collector.on('collect', async (buttonInteraction) => {
+            await buttonInteraction.deferUpdate();
+
+            const Content = new EmbedBuilder()
+                .setColor(14425658)
+                .setTitle(`👤 Lookup for ${User.username}`)
+                .setDescription(`- 🖋 Nickname : ${Member.nickname}\n- 📃 Server : ${Server.name}\n- 🌎 Locale : ${Server.preferredLocale}\n- 🧩 Discriminator : #${User.discriminator}\n- 🆔 Id : ${User.id}\n- 🤖 Bot : ${User.bot}\n- 🔧 System : ${User.system}\n- 🔨 Created at : ${User.createdAt.toLocaleString()}`)
+                .addFields(
+                    { name: 'ฺ🖼 Banner', value: `${User.banner}`, inline: true },
+                    { name: '🎨 Accent color', value: `${User.accentColor}`, inline: true },
+                    { name: '🔐 Permissions', value: `${PermissionsString}` },
+                )
+                .setThumbnail(`${User.avatarURL()}`)
+                .setTimestamp()
+
+            return interaction.editReply({ embeds: [Content], components: [] })
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                return interaction.editReply({ embeds: [Content], components: [] });
+            }
+        });
     }
 }
 

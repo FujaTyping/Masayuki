@@ -25,7 +25,7 @@ class AboutCommand extends Command {
             .setDescription('I am Masayuki, an 18-year-old student at Akane High School. Standing at 175 cm, I have a calm and composed demeanor. My best friend is Maoyumi, who possesses a fiery and passionate spirit. Together, we navigate the challenges of adolescence and embark on a journey of self-discovery, cherishing the moments we share at Akane High School.')
             .setTimestamp()
 
-        return await interaction.reply({ embeds: [Img, Content] });
+        return interaction.reply({ embeds: [Img, Content] });
     }
 }
 

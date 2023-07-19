@@ -34,7 +34,7 @@ class PerformanceCommand extends Command {
             )
             .setTimestamp()
 
-        return await interaction.reply({ embeds: [Content] });
+        return interaction.reply({ embeds: [Content] });
     }
 }
 
