@@ -24,6 +24,7 @@ npm install
 > Use this value
 ```
 discord_token=
+bard_authorization=
 ```
 3. Run command (Don't forget to install [node](https://nodejs.org/en/download))
 ```
