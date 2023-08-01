@@ -30,7 +30,7 @@ class AskCommand extends Command {
             .setTitle(`🗨️ Thinking the answer`)
             .setDescription(`- This will take a several minutes...\nIf take too long, please chack bot response time`)
             .setTimestamp()
-            .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
+            .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
         const msg = await interaction.reply({ embeds: [Wait], fetchReply: true });
 
@@ -46,7 +46,7 @@ class AskCommand extends Command {
                     .setTitle(`🔮 Response for ${Author}`)
                     .setDescription(Response)
                     .setTimestamp()
-                    .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
+                    .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
                 return interaction.editReply({ embeds: [Content] });
             }
@@ -58,7 +58,7 @@ class AskCommand extends Command {
                     .setColor(14425658)
                     .setTitle(`❌ Cannot answer your question`)
                     .setTimestamp()
-                    .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
+                    .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
                 return interaction.editReply({ embeds: [Error] });
             }
