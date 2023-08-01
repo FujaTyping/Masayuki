@@ -28,25 +28,13 @@ class AskCommand extends Command {
         const Wait = new EmbedBuilder()
             .setColor(14425658)
             .setTitle(`🗨️ Thinking the answer`)
-            .setDescription(`- This will take a while...`)
+            .setDescription(`- This will take a several minutes...\nIf take too long, please chack bot response time`)
             .setTimestamp()
             .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
         const msg = await interaction.reply({ embeds: [Wait], fetchReply: true });
 
         if (isMessageInstance(msg)) {
-            try {
-                Main();
-            } catch (e) {
-                const Error = new EmbedBuilder()
-                    .setColor(14425658)
-                    .setTitle(`❌ Cannot answer your question`)
-                    .setTimestamp()
-                    .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
-
-                return interaction.editReply({ embeds: [Error] });
-            }
-
             async function Main() {
                 const Bard = await import("bard-ai");
                 const Auth = process.env.bard_authorization;
@@ -61,6 +49,18 @@ class AskCommand extends Command {
                     .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
                 return interaction.editReply({ embeds: [Content] });
+            }
+
+            try {
+                Main();
+            } catch (e) {
+                const Error = new EmbedBuilder()
+                    .setColor(14425658)
+                    .setTitle(`❌ Cannot answer your question`)
+                    .setTimestamp()
+                    .setFooter({ text: 'Bard ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
+
+                return interaction.editReply({ embeds: [Error] });
             }
         }
     }
