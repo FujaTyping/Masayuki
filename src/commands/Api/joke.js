@@ -32,10 +32,7 @@ class JokeCommand extends Command {
                     const Content = new EmbedBuilder()
                         .setColor(14425658)
                         .setTitle(`Found joke for you ✨`)
-                        .setDescription(`- 🃏 Joke : ${info.setup}\n- 📃 Answer : ||${info.punchline}|| (Click to reveal)`)
-                        .addFields(
-                            { name: '🧩 Type', value: `${info.type}`, inline: true },
-                        )
+                        .setDescription(`- 🃏 Joke : ${info.setup}\n- 📃 Answer : ||${info.punchline}|| (Click to reveal)\n- 🧩 Type : ${info.type}`)
                         .setTimestamp()
                         .setFooter({ text: 'Joke API' });
 
