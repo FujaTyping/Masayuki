@@ -17,18 +17,30 @@ class AskCommand extends Command {
                         .setDescription('Enter want do to want to ask me!')
                         .setRequired(true)
                 )
+                .addStringOption((option) => // Add option
+                    option
+                        .setName('type')
+                        .setDescription('Type of answer that you want!')
+                        .addChoices(
+                            { name: 'Long', value: 'long' },
+                            { name: 'Short', value: 'short' },
+                            { name: 'Programming', value: 'programming' }
+                        )
+                )
         );
     }
 
     async chatInputRun(interaction) {
 
         const Prompt = interaction.options.getString('prompt')
+        const Type = interaction.options.getString('type') ?? 'normal'
         const Author = interaction.user.username
+        const DefultPrompt = `Your name is : Masayuki and talking with : ${Author}\nAnd ${Author} ask you (Answer question in ${Type}) : `;
 
         const Wait = new EmbedBuilder()
             .setColor(14425658)
             .setTitle(`🗨️ Thinking the answer`)
-            .setDescription(`- This will take a several minutes...\nIf take too long, please chack bot response time`)
+            .setDescription(`- This will take a several minutes...\nIf take too long, please check bot response time`)
             .setTimestamp()
             .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
@@ -39,7 +51,7 @@ class AskCommand extends Command {
                 const Bard = await import("bard-ai");
                 const Auth = process.env.bard_authorization;
                 const Initz = await Bard.init(Auth);
-                const Response = await Bard.askAI(Prompt);
+                const Response = await Bard.askAI(DefultPrompt + Prompt);
 
                 const Content = new EmbedBuilder()
                     .setColor(14425658)
