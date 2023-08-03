@@ -35,7 +35,7 @@ class AskCommand extends Command {
         const Prompt = interaction.options.getString('prompt')
         const Type = interaction.options.getString('type') ?? 'normal'
         const Author = interaction.user.username
-        const DefultPrompt = `Your name is : Masayuki and talking with : ${Author}\nAnd ${Author} ask you (Answer question in ${Type}) : `;
+        const DefultPrompt = `${Author} : ${Prompt}\nMasayuki : \n(Use general conversational language without being very informal, Answer question only in ${Type})`;
 
         const Wait = new EmbedBuilder()
             .setColor(14425658)
@@ -51,7 +51,7 @@ class AskCommand extends Command {
                 const Bard = await import("bard-ai");
                 const Auth = process.env.bard_authorization;
                 const Initz = await Bard.init(Auth);
-                const Response = await Bard.askAI(DefultPrompt + Prompt);
+                const Response = await Bard.askAI(DefultPrompt);
 
                 const Content = new EmbedBuilder()
                     .setColor(14425658)
