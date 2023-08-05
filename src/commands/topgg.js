@@ -24,13 +24,13 @@ class TopggCommand extends Command {
 
         const msg = await message.channel.send({ embeds: [Wait] });
 
-        const Vote = new ButtonBuilder() // Button builder
-            .setLabel('Vote')
+        const View = new ButtonBuilder() // Button builder
+            .setLabel('View')
             .setURL('https://top.gg/bot/1124700960191676446')
             .setStyle(ButtonStyle.Link);
 
         const Trigged = new ActionRowBuilder() // Build components
-            .addComponents(Vote);
+            .addComponents(View);
 
         AutoPoster(process.env.topgg_token, this.container.client).on("posted", () => {
             const Content = new EmbedBuilder()

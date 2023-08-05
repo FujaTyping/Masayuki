@@ -9,7 +9,7 @@ class AboutCommand extends Command {
 
     registerApplicationCommands(registry) {
         registry.registerChatInputCommand((builder) =>
-            builder.setName('about').setDescription('About Me Masayuki')
+            builder.setName('about').setDescription('About me!')
         );
     }
 
