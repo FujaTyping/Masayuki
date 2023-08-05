@@ -22,6 +22,8 @@ class EightBallCommand extends Command {
 
     async chatInputRun(interaction) {
 
+        const Prompt = interaction.options.getString('prompt')
+
         const Wait = new EmbedBuilder()
             .setColor(14425658)
             .setTitle(`🪄 Waiting for the magic`)
@@ -31,14 +33,14 @@ class EightBallCommand extends Command {
         const msg = await interaction.reply({ embeds: [Wait], fetchReply: true });
 
         if (isMessageInstance(msg)) {
-            axios.get(`https://www.eightballapi.com/api`)
+            axios.get(`https://www.eightballapi.com/api?question=${Prompt}`)
                 .then(response => {
                     const info = response.data;
 
                     const Content = new EmbedBuilder()
                         .setColor(14425658)
                         .setTitle(`Magic of 8ball ✨`)
-                        .setDescription(`- 🎱 Answer : ${info.reading}`)
+                        .setDescription(`🎱 Answer : ${info.reading}`)
                         .setTimestamp()
                         .setFooter({ text: '8Ball API', iconURL: 'https://cdn.discordapp.com/attachments/1048572405867618354/1137417506726875286/favicon.png' });
 
