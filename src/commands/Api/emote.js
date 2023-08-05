@@ -26,7 +26,10 @@ class EmoteCommand extends Command {
                             { name: 'Slap', value: 'slap' },
                             { name: 'Kill', value: 'kill' },
                             { name: 'Kick', value: 'kick' },
-                            { name: 'Bite', value: 'bite' }
+                            { name: 'Bite', value: 'bite' },
+                            { name: 'Dance', value: 'dance' },
+                            { name: 'Smile', value: 'smile' },
+                            { name: 'Happy', value: 'happy' }
                         )
                         .setRequired(true)
                 )
