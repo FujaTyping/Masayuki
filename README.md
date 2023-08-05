@@ -26,6 +26,7 @@ npm install
 discord_token=
 bard_authorization=
 ```
+> topgg_token= (up to you)
 3. Run command (Don't forget to install [node](https://nodejs.org/en/download))
 ```
 node .  or  node src/index.js
