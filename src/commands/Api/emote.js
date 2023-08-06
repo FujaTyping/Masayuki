@@ -29,6 +29,7 @@ class EmoteCommand extends Command {
                             { name: 'Bite', value: 'bite' },
                             { name: 'Dance', value: 'dance' },
                             { name: 'Smile', value: 'smile' },
+                            { name: 'Cry', value: 'cry' },
                             { name: 'Happy', value: 'happy' }
                         )
                         .setRequired(true)
@@ -63,7 +64,7 @@ class EmoteCommand extends Command {
                     const Content = new EmbedBuilder()
                         .setColor(14425658)
                         .setTitle(`Showing the emote 🥰`)
-                        .setDescription(`<@${interaction.user.id}> ${Action} to ${User}`)
+                        .setDescription(`- <@${interaction.user.id}> ${Action} to ${User}\nDon't worry, this is a safe image / gif (Safe For Work).`)
                         .setImage(`${info.url}`)
                         .setTimestamp()
                         .setFooter({ text: 'Waifu.pics API' });
