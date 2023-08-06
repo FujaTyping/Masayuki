@@ -1,6 +1,6 @@
 const { isMessageInstance } = require('@sapphire/discord.js-utilities');
 const { Command } = require('@sapphire/framework');
-const { EmbedBuilder } = require('discord.js')
+const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js')
 const os = require('os');
 
 class PerformanceCommand extends Command {
@@ -15,6 +15,15 @@ class PerformanceCommand extends Command {
     }
 
     async chatInputRun(interaction) {
+
+        const Request = new ButtonBuilder() // Button builder
+            .setCustomId('request')
+            .setLabel('View status')
+            .setStyle(ButtonStyle.Secondary)
+            .setEmoji('📈');
+
+        const Trigged = new ActionRowBuilder() // Build components
+            .addComponents(Request);
 
         const cpu = os.cpus();
 
@@ -34,7 +43,34 @@ class PerformanceCommand extends Command {
             )
             .setTimestamp()
 
-        return interaction.reply({ embeds: [Content] });
+        await interaction.reply({ embeds: [Content], components: [Trigged] });
+
+        const collector = interaction.channel.createMessageComponentCollector({
+            filter: (buttonInteraction) => buttonInteraction.customId === 'request' && buttonInteraction.user.id === interaction.user.id,
+            time: 60000,
+            max: 1
+        });
+
+        collector.on('collect', async (buttonInteraction) => {
+            await buttonInteraction.deferUpdate();
+            const Start = "```"
+            const Server = this.container.client.guilds.cache.size
+            const Shard = this.container.client.options.shardCount
+
+            const Button_Content = new EmbedBuilder()
+                .setColor(14425658)
+                .setTitle(`📊 This is my status`)
+                .setDescription(`- Here is my realtime general information\n` + Start + `\n🏡 Server : ` + Server + ` | 💎 Shard : ` + Shard + `\n` + Start)
+                .setTimestamp()
+
+            return interaction.editReply({ embeds: [Content, Button_Content], components: [] })
+        });
+
+        collector.on('end', (collected, reason) => {
+            if (reason === 'time') {
+                return interaction.editReply({ embeds: [Content], components: [] });
+            }
+        });
     }
 }
 
