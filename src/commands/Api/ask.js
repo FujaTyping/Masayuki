@@ -37,44 +37,15 @@ class AskCommand extends Command {
         const Author = interaction.user.username
         const DefultPrompt = `${Author} : ${Prompt}\nMasayuki : \n(Use general conversational language without being very informal, Answer question only in ${Type})`;
 
-        const Wait = new EmbedBuilder()
+        const Warn = new EmbedBuilder()
             .setColor(14425658)
-            .setTitle(`🗨️ Thinking the answer`)
-            .setDescription(`- This will take a several minutes...\nIf take too long, please check bot response time`)
+            .setTitle("💥 Feature unavailable")
+            .setDescription(`⚠ Sorry ` + `${Author}` + ", Masayuki `/ask` feature is unavailable right now!\nWe're fixing the error : Could not get Google Bard")
             .setTimestamp()
             .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 
-        const msg = await interaction.reply({ embeds: [Wait], fetchReply: true });
+        const msg = await interaction.reply({ embeds: [Warn], fetchReply: true });
 
-        if (isMessageInstance(msg)) {
-            async function Main() {
-                const Bard = await import("bard-ai");
-                const Auth = process.env.bard_authorization;
-                const Initz = await Bard.init(Auth);
-                const Response = await Bard.askAI(DefultPrompt);
-
-                const Content = new EmbedBuilder()
-                    .setColor(14425658)
-                    .setTitle(`🔮 Response for ${Author}`)
-                    .setDescription(Response)
-                    .setTimestamp()
-                    .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
-
-                return interaction.editReply({ embeds: [Content] });
-            }
-
-            try {
-                Main();
-            } catch (e) {
-                const Error = new EmbedBuilder()
-                    .setColor(14425658)
-                    .setTitle(`❌ Cannot answer your question`)
-                    .setTimestamp()
-                    .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
-
-                return interaction.editReply({ embeds: [Error] });
-            }
-        }
     }
 }
 
