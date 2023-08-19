@@ -13,9 +13,15 @@ class TalkCommand extends Command {
 
     async messageRun(message, args) {
 
-        const Msg = await args.rest('string');
-        message.delete();
-        return message.channel.send(Msg);
+        const Author = message.author.username
+
+        const Warn = new EmbedBuilder()
+            .setColor(14425658)
+            .setTitle("💥 Feature unavailable")
+            .setDescription(`⚠ Sorry ` + `${Author}` + ", Masayuki `!!talk (tk)` feature is unavailable right now!\nThis command require `DELETE_MESSAGE (MANAGE_MESSAGE)` permission\nNow we're fixing the Masayuki default permission")
+            .setTimestamp()
+
+        const msg = await message.channel.send({ embeds: [Warn] });
 
     }
 }
