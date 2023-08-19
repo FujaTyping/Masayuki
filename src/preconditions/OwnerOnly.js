@@ -1,35 +1,38 @@
-const { AllFlowsPrecondition } = require('@sapphire/framework');
+const { Precondition } = require('@sapphire/framework');
 const { owners } = require('../config.json');
 
-class UserPrecondition extends AllFlowsPrecondition {
-    #message = '⚠ This command use by ONWERS only!';
-
-    chatInputRun(interaction) {
-        return this.doOwnerCheck(interaction.user.id);
+class OwnerOnlyPrecondition extends Precondition {
+    async messageRun(message) {
+        // for Message Commands
+        return this.checkOwner(message.author.id);
     }
 
-    contextMenuRun(interaction) {
-        return this.doOwnerCheck(interaction.user.id);
+    async chatInputRun(interaction) {
+        // for Slash Commands
+        return this.checkOwner(interaction.user.id);
     }
 
-    messageRun(message) {
-        return this.doOwnerCheck(message.author.id);
+    async contextMenuRun(interaction) {
+        // for Context Menu Command
+        return this.checkOwner(interaction.user.id);
     }
 
-    doOwnerCheck(userId) {
-        return owners.includes(userId) ? this.ok() : this.error({ message: this.#message });
+    async checkOwner(userId) {
+        return owners.includes(userId)
+            ? this.ok()
+            : this.error({ message: '⚠ This is owner only command!' });
     }
 }
 
 /*
-    HOW TO USE
-    Just add this line of code in commands file at
-
-    constructor(context, options) {
-        preconditions: ['OwnerOnly']
-    }
+  constructor(context) {
+    super(context, {
+      // ...
+      preconditions: ['OwnerOnly']
+    });
+  }
 */
 
 module.exports = {
-    UserPrecondition
+    OwnerOnlyPrecondition
 };
