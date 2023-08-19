@@ -16,6 +16,7 @@ class TopggCommand extends Command {
     async messageRun(message) {
 
         const Author = message.author.username
+        const Client = this.container.client
 
         async function Main() {
             const Wait = new EmbedBuilder()
@@ -35,7 +36,7 @@ class TopggCommand extends Command {
             const Trigged = new ActionRowBuilder() // Build components
                 .addComponents(View);
 
-            AutoPoster(process.env.topgg_token, this.container.client).on("posted", () => {
+            AutoPoster(process.env.topgg_token, Client).on("posted", () => {
                 const Content = new EmbedBuilder()
                     .setColor(14425658)
                     .setTitle(`Posted to top.gg ✅`)
