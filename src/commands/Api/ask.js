@@ -40,7 +40,7 @@ class AskCommand extends Command {
         const Warn = new EmbedBuilder()
             .setColor(14425658)
             .setTitle("💥 Feature unavailable")
-            .setDescription(`⚠ Sorry ` + `${Author}` + ", Masayuki `/ask` feature is unavailable right now!\nWe're fixing the error : Could not get Google Bard")
+            .setDescription(`⚠ Sorry ` + `${Author}` + " , Masayuki `/ask` feature is unavailable right now!\nWe're fixing the error : Could not get Google Bard")
             .setTimestamp()
             .setFooter({ text: 'Bard Ai', iconURL: 'https://cdn.discordapp.com/attachments/1071401485239332864/1133795819208851518/Google_Bard_logo-svg.png' });
 

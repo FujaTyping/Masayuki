@@ -54,7 +54,7 @@ class TopggCommand extends Command {
             const Error = new EmbedBuilder()
                 .setColor(14425658)
                 .setTitle(`💢 Require permission`)
-                .setDescription(`Sorry ${Author} , This command is for owner only!`)
+                .setDescription(`⚠ Sorry ${Author} , This feature is for owner only!`)
                 .setTimestamp()
 
             return message.channel.send({ embeds: [Error] });

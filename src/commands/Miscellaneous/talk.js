@@ -1,5 +1,6 @@
 const { Command } = require('@sapphire/framework');
-const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js')
+const { PermissionsBitField, EmbedBuilder } = require('discord.js')
+const { id } = require('../../config.json');
 
 class TalkCommand extends Command {
     constructor(context, options) {
@@ -13,15 +14,27 @@ class TalkCommand extends Command {
 
     async messageRun(message, args) {
 
-        const Author = message.author.username
+        const Msg = await args.rest('string');
+        const Server = message.guild;
+        const Author = message.author.username;
 
-        const Warn = new EmbedBuilder()
-            .setColor(14425658)
-            .setTitle("💥 Feature unavailable")
-            .setDescription(`⚠ Sorry ` + `${Author}` + ", Masayuki `!!talk` feature is unavailable right now!\nThis feature require `DELETE_MESSAGE (MANAGE_MESSAGE)` permission\nNow we're fixing : Default permission")
-            .setTimestamp()
+        if (await Server.members.fetch(id)) {
+            const User = Server.members.cache.get(id);
+            const Permissions = User.permissions;
 
-        const msg = await message.channel.send({ embeds: [Warn] });
+            if (Permissions.has(PermissionsBitField.Flags.ManageMessages)) {
+                message.delete();
+                return message.channel.send(Msg);
+            } else {
+                const Error = new EmbedBuilder()
+                    .setColor(14425658)
+                    .setTitle(`💢 Require permission`)
+                    .setDescription("⚠ Sorry " + Author + " , This feature is require `ManageMessages` permission to run\nPlease add : `ManageMessages` permission to Masayuki to run this feature")
+                    .setTimestamp()
+
+                return message.channel.send({ embeds: [Error] });
+            }
+        }
 
     }
 }
