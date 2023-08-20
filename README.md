@@ -10,25 +10,16 @@ git clone https://github.com/FujaTyping/Masayuki.git
 ```
 npm install
 ```
-2. Make a **config.json** in src/..
-> Use this value
-```
-{
-    "prefix": "",
-    "owners": [
-        ""
-    ]
-}
-```
-2.1. Make **.env** file in main directory (outside src folder)
+2. Update your value in **config.json** in src/.. <br>
+3. Make **.env** file in main directory (outside src folder)
 > Use this value
 ```
 discord_token=
 bard_authorization=
 ```
 > topgg_token= (up to you)
-3. Run command (Don't forget to install [node](https://nodejs.org/en/download))
+4. Run command (Don't forget to install [node](https://nodejs.org/en/download))
 ```
 node .  or  node src/index.js
 ```
-4. 🎉 That all !
+5. 🎉 That all !
