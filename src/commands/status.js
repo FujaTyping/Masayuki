@@ -14,10 +14,11 @@ class StatusCommand extends Command {
 
     async messageRun(message, args) {
 
+        const Author = message.author.username
         const Client = this.container.client
         const Msg = await args.rest('string');
 
-        async function Main() {
+        function Main() {
             Client.user.setPresence({ // Set custom status of bot
                 activities: [{
                     name: `${Msg}`,
@@ -32,7 +33,7 @@ class StatusCommand extends Command {
                 .setDescription(`- 👦🏻 Update status name : ${Msg}\n- 🧩 Type : Streaming\n- 🔗 Url : https://www.twitch.tv/anime`)
                 .setTimestamp()
 
-            const msg = await message.channel.send({ embeds: [Content] });
+            return message.channel.send({ embeds: [Content] });
         }
 
         if (owner == message.author.id) {
